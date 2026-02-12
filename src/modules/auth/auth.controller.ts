@@ -15,12 +15,11 @@ export class AuthController {
     res.setHeader('Authorization', `Bearer ${token}`);
     res.setHeader('X-Tenant-Id', req.user.tenantId);
 
-    console.log(req.user, 'sdfasdfsfsfsfasfsf');
-
     return res.status(200).json({
       message: 'Login successful',
       tenantId: req.user.tenantId,
       access_token: token,
+      email: req.user.email,
     });
   }
 }
