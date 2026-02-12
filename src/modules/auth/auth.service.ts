@@ -27,9 +27,9 @@ export class AuthService {
     return { id: user.id, email: user.email, tenantId: user.tenantId };
   }
 
-  login(userId: number, tenantId: string) {
+  login(userId: number, tenantId: string, email: string) {
     // Implement JWT token generation logic here
-    const payload: AuthJwtPayload = { sub: userId, tenantId };
+    const payload: AuthJwtPayload = { sub: userId, tenantId, email };
     return this.jwtService.sign(payload);
   }
 }
