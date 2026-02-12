@@ -10,7 +10,11 @@ export class AuthController {
   @UseGuards(LocalAuthGuard) // checks username/password
   @Post('login')
   async login(@Request() req, @Res() res: express.Response) {
-    const token = await this.authService.login(req.user.id, req.user.tenantId);
+    const token = await this.authService.login(
+      req.user.id,
+      req.user.tenantId,
+      req.user.email,
+    );
 
     res.setHeader('Authorization', `Bearer ${token}`);
     res.setHeader('X-Tenant-Id', req.user.tenantId);
